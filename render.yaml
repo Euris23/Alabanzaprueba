@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: tbbc-alabanza
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tbbc-db
+          property: connectionString
+
+databases:
+  - name: tbbc-db
+    databaseName: tbbc_db
+    user: tbbc_user
+    plan: free
+
